@@ -18,8 +18,9 @@ class CreateReservationsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->tinyInteger('number');
-            $table->foreignId('user_id')->constrainded('users');
-            $table->foreignId('shop_id')->constrainded('shops');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('shop_id')->constrained('shops');
+            $table->boolean('canceled')->default(0);
             $table->timestamps();
         });
     }

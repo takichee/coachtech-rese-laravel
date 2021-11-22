@@ -19,7 +19,8 @@ class ReservationFactory extends Factory
             'time' => $this->faker->time('H:i'),
             'number' => $this->faker->numberBetween(1, 10),
             'user_id' => $this->faker->numberBetween(1, 10),
-            'shop_id' => $this->faker->numberBetween(1, 20)
+            'shop_id' => $this->faker->numberBetween(1, 20),
+            'canceled' => $this->faker->numberBetween(0, 1)
         ];
     }
 }
