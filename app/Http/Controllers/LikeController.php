@@ -37,7 +37,9 @@ class LikeController extends Controller
      */
     public function show($user_id)
     {
-        $likes = DB::table('likes')->where('user_id', $user_id)->get();
+        $likes = Like::join('shops', 'likes.shop_id', '=', 'shops.id')
+                    ->where('likes.user_id', $user_id)
+                    ->get();
 
         return $likes;
     }

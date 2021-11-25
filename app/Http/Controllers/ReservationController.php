@@ -37,7 +37,20 @@ class ReservationController extends Controller
      */
     public function show($user_id)
     {
-        $reservations = DB::table('reservations')->where('user_id', $user_id)->get();
+        $reservations = Reservation::join('shops', 'reservations.shop_id', '=', 'shops.id')
+                    ->where('reservations.user_id', $user_id)
+                    ->get([
+                        'reservations.id',
+                        'reservations.date',
+                        'reservations.time',
+                        'reservations.number',
+                        'reservations.user_id',
+                        'reservations.shop_id',
+                        'reservations.canceled',
+                        'reservations.created_at',
+                        'reservations.updated_at',
+                        'shops.name',
+                        'shops.image_url']);
 
         return $reservations;
     }
