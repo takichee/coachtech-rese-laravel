@@ -15,8 +15,7 @@ class ReservationFactory extends Factory
     public function definition()
     {
         return [
-            'date' => $this->faker->date('2021-m-d'),
-            'time' => $this->faker->time('H:i'),
+            'start_at' => $this->faker->datetime(),
             'number' => $this->faker->numberBetween(1, 10),
             'user_id' => $this->faker->numberBetween(1, 10),
             'shop_id' => $this->faker->numberBetween(1, 20),
