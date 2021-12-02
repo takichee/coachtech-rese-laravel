@@ -12,9 +12,26 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Shop::all();
+        $keyword = $request->input('keyword');
+        $area = $request->input('area');
+        $kind = $request->input('kind');
+
+        $query = Shop::query();
+
+        if(!empty($keyword)) {
+            $query->where('name', 'like', '%'.$keyword.'%');
+        }
+        if(!empty($area)) {
+            $query->where('area', 'like', '%'.$area.'%');
+        }
+        if(!empty($kind)) {
+            $query->where('kind', 'like', '%'.$kind.'%');
+        }
+
+        $data = $query->get();
+        return $data;
     }
 
     /**

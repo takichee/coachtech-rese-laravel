@@ -22,3 +22,4 @@ Route::apiResource('/v1/reservations', ReservationController::class)->only([
 Route::apiResource('/v1/likes', LikeController::class)->only([
     'show', 'store', 'destroy'
 ]);
+
