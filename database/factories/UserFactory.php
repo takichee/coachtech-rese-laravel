@@ -24,7 +24,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->email,
-            'password' => $this->faker->uuid,
+            'uid' => $this->faker->uuid,
             'created_at' => $this->faker->dateTimeThisYear
         ];
     }
