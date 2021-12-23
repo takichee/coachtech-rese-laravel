@@ -49,6 +49,7 @@ class LikeController extends Controller
     {
         $likes = Like::join('shops', 'likes.shop_id', '=', 'shops.id')
                     ->where('likes.user_id', $user_id)
+                    ->orderBy('likes.created_at', 'desc')
                     ->get();
 
         return $likes;
