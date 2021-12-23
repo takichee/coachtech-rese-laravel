@@ -26,7 +26,17 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
-        return Like::create($request->all());
+        $liked_id = Like::where('shop_id', $request->shop_id)
+            ->where('user_id', $request->user_id)
+            ->get('id');
+        $liked = Like::find($liked_id);
+        if ($liked->isEmpty()) {
+            return Like::create($request->all());
+        } else {
+            Like::where('shop_id', $request->shop_id)
+                ->where('user_id', $request->user_id)->delete();
+            return 204;
+        }
     }
 
     /**
@@ -62,11 +72,14 @@ class LikeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $reservation = Like::findOrFail($id);
-        $reservation->delete();
+        // $reservation = Like::findOrFail($id);
+        // $reservation->delete();
 
+        $unlike = Like::where('shop_id', '=', $shop_id)
+        ->where('user_id', $user_id)->delete();
+        
         return 204;
     }
 }
