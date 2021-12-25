@@ -39,7 +39,7 @@ class ReservationController extends Controller
     {
         $reservations = Reservation::join('shops', 'reservations.shop_id', '=', 'shops.id')
                     ->where('reservations.user_id', $user_id)
-                    ->orderBy('reservations.start_at', 'desc')
+                    ->orderBy('reservations.created_at', 'desc')
                     ->get([
                         'reservations.id',
                         'reservations.start_at',
